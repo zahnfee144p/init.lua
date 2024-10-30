@@ -1,1 +1,1 @@
-require("lua/zahnfee")
+require("zahnfee")
