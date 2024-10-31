@@ -7,6 +7,7 @@ return {
 	config = true,
 	keys = {
 		{ "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "Mark file with harpoon" },
+		-- { "<leader>A", "<cmd>lua require('harpoon.mark').prepend_file()<cr>", desc = "Prepend file with harpoon" },
 		{ "<leader>n", "<cmd>lua require('harpoon.ui').nav_next()<cr>", desc = "Go to next harpoon mark" },
 		{ "<leader>N", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", desc = "Go to previous harpoon mark" },
 		{ "<leader>t", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Show harpoon marks" },
