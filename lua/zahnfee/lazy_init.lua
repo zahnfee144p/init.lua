@@ -20,4 +20,3 @@ require("lazy").setup({
     spec = "zahnfee.lazy",
     change_detection = { notify = false }
 })
-  

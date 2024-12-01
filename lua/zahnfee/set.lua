@@ -13,6 +13,8 @@ vim.opt.wrap = false
 -- maybe use this
 vim.opt.swapfile = false
 vim.opt.backup = false
+vim.opt.undolevels = 1000
+vim.opt.undoreload = 10000
 
 -- useful, also look at this: https://github.com/kevinhwang91/nvim-fundo
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
