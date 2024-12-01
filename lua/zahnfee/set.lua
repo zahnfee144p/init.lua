@@ -19,6 +19,8 @@ vim.opt.undoreload = 10000
 -- useful, also look at this: https://github.com/kevinhwang91/nvim-fundo
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+vim.opt.undolevels = 1000
+vim.opt.undoreload = 10000
 
 -- maybe do this, depends on plugin responsiveness
 vim.opt.updatetime = 50
