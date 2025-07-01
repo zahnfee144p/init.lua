@@ -1,3 +1,8 @@
+vim.keymap.set("n", "<leader>t]", function()
+  require("trouble").next("diagnostics", { jump = true, skip_groups = true })
+  require("trouble").jump("diagnostics", { jump = true, skip_groups = true })
+end)
+
 return {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
