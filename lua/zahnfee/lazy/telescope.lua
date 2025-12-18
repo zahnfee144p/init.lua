@@ -8,7 +8,13 @@ return {
     },
 
     config = function()
-        require('telescope').setup({})
+        require('telescope').setup({
+            pickers = {
+                find_files = {
+                    push_tagstack_on_edit = true,
+                },
+            },
+        })
 
         local builtin = require('telescope.builtin')
         -- project files

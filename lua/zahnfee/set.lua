@@ -36,3 +36,4 @@ vim.opt.signcolumn = "yes"
 -- vim.opt.isfname:append("@-@")
 
 vim.opt.colorcolumn = "80"
+vim.opt.cursorline = true
