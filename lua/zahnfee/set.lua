@@ -35,5 +35,5 @@ vim.opt.signcolumn = "yes"
 -- don't know what this does exactly, may be useful
 -- vim.opt.isfname:append("@-@")
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
 vim.opt.cursorline = true
