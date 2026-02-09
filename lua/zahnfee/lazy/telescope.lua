@@ -14,7 +14,15 @@ return {
                     push_tagstack_on_edit = true,
                 },
             },
+            extensions = {
+                fzy_native = {
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                }
+            },
         })
+
+        require('telescope').load_extension('fzy_native')
 
         local builtin = require('telescope.builtin')
         -- project files
@@ -33,7 +41,7 @@ return {
         end)
         -- project search
         vim.keymap.set('n', '<leader>ps', function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
+            builtin.live_grep({ additional_args = {"--hidden", "--no-ignore"} })
         end)
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
     end
