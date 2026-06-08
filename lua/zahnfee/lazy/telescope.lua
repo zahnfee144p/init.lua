@@ -50,7 +50,7 @@ return {
         {desc = "Project Search (grep)"})
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {desc = "Help Tags"})
 
-        vim.keymap.set("n", "<leader>c", "<cmd>Telescope luasnip<cr>", { desc = "Search Snippets" })
+        vim.keymap.set("n", "<leader>ma", "<cmd>Telescope luasnip<cr>", { desc = "Search MAgic Snippets" })
     end,
 
 }
