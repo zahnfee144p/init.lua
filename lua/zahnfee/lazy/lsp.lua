@@ -8,9 +8,13 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
+        {
+            "L3MON4D3/LuaSnip",
+            build = "make install_jsregexp",
+        },
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "rafamadriz/friendly-snippets",
     },
 
     config = function()
@@ -70,6 +74,12 @@ return {
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+        require("luasnip").setup({
+            updateevents = "TextChanged, TextChangedI",
+        })
+
+        require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
             snippet = {
