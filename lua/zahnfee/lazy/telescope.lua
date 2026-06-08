@@ -4,7 +4,8 @@ return {
     branch = "master",
 
     dependencies = {
-        "nvim-lua/plenary.nvim"
+        "nvim-lua/plenary.nvim",
+        "benfowler/telescope-luasnip.nvim",
     },
 
     config = function()
@@ -23,26 +24,33 @@ return {
         })
 
         require('telescope').load_extension('fzy_native')
+        require('telescope').load_extension('luasnip')
 
         local builtin = require('telescope.builtin')
         -- project files
-        vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+        vim.keymap.set('n', '<leader>pf', builtin.find_files, {desc = "Find Project Files"})
         -- git files
-        vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
+        vim.keymap.set('n', '<leader>gf', builtin.git_files, {desc = "Find Git Files"})
         -- project word search
         vim.keymap.set('n', '<leader>pws', function()
             local word = vim.fn.expand("<cword>")
             builtin.grep_string({ search = word })
-        end)
+        end,
+        {desc = "Project Word Search"})
         -- project WORD (line) search
         vim.keymap.set('n', '<leader>pWs', function()
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
-        end)
+        end,
+        {desc = "Project WORD (line) serach"})
         -- project search
         vim.keymap.set('n', '<leader>ps', function()
             builtin.live_grep({ additional_args = {"--hidden", "--no-ignore"} })
-        end)
-        vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
-    end
+        end,
+        {desc = "Project Search (grep)"})
+        vim.keymap.set('n', '<leader>vh', builtin.help_tags, {desc = "Help Tags"})
+
+        vim.keymap.set("n", "<leader>c", "<cmd>Telescope luasnip<cr>", { desc = "Search Snippets" })
+    end,
+
 }
