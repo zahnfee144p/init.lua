@@ -33,44 +33,72 @@ return {
                 "lua_ls",
                 "gopls",
                 "zls",
+                "texlab",
             },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
+        })
 
-                zls = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
-                        root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
-                        settings = {
-                            zls = {
-                                enable_inlay_hints = true,
-                                enable_snippets = true,
-                                warn_style = true,
-                            },
+        vim.lsp.config("lua_ls", {
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    runtime = { version = "Lua 5.1" },
+                    diagnostics = {
+                        globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                    },
+                },
+            },
+        })
+
+        vim.lsp.config("zls", {
+            root_dir = vim.fs.root(0, { ".git", "build.zig", "zls.json" }),
+            settings = {
+                zls = {
+                    enable_inlay_hints = true,
+                    enable_snippets = true,
+                    warn_style = true,
+                },
+            },
+        })
+        vim.g.zig_fmt_parse_errors = 0
+        vim.g.zig_fmt_autosave = 0
+
+        vim.lsp.config("texlab", {
+            settings = {
+                texlab = {
+                    rootDirectory = nil, -- figures it out by itself
+                    build = {
+                        executable = "latexmk",
+                        args = {
+                            "-lualatex",
+                            "-shell-escape",
+                            "-interaction=nonstopmode",
+                            "-synctex=1",
+                            "%f",
                         },
-                    })
-                    vim.g.zig_fmt_parse_errors = 0
-                    vim.g.zig_fmt_autosave = 0
-                end,
-                ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
-            }
+                        forwardSearchAfter = true,
+                        onSave = true,
+                    },
+                    chktex = {
+                        onOpenAndSave = true,
+                        -- disable specific nitpicks (chktex -h)
+                        -- restArgs = { "-n1",
+                        -- "-n8"
+                        -- },
+                    },
+                    forwardSearch = {
+                        executable = "papers",
+                        args = { "%p" },
+                    },
+                },
+            },
+        })
+        vim.lsp.enable("texlab")
+        -- Automatically trigger TexLab build on every file save
+        vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = "*.tex",
+            callback = function()
+                vim.cmd("LspTexlabBuild")
+            end,
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
