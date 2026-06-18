@@ -86,8 +86,15 @@ return {
                         -- },
                     },
                     forwardSearch = {
-                        executable = "papers",
-                        args = { "%p" },
+                        executable = "flatpak",
+                        args = {
+                            "run",
+                            "com.github.ahrm.sioyek",
+                            "--reuse-window",
+                            "--forward-search-file", "%f",
+                            "--forward-search-line", "%l",
+                            "%p",
+                        },
                     },
                 },
             },
