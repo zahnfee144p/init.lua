@@ -37,3 +37,6 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.colorcolumn = "100"
 vim.opt.cursorline = true
+
+-- vim.o is the global version of opt (?)
+vim.o.winborder = "rounded"

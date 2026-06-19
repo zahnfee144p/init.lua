@@ -111,6 +111,10 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
+            window = {
+                completion = cmp.config.window.bordered({ border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } }),
+                documentation = cmp.config.window.bordered({ border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } }),
+            },
             snippet = {
                 expand = function(args)
                     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
