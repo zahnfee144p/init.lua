@@ -76,7 +76,7 @@ return {
                             "%f",
                         },
                         forwardSearchAfter = true,
-                        onSave = true,
+                        onSave = false,
                     },
                     chktex = {
                         onOpenAndSave = true,
@@ -100,13 +100,7 @@ return {
             },
         })
         vim.lsp.enable("texlab")
-        -- Automatically trigger TexLab build on every file save
-        vim.api.nvim_create_autocmd("BufWritePost", {
-            pattern = "*.tex",
-            callback = function()
-                vim.cmd("LspTexlabBuild")
-            end,
-        })
+        -- see after/ftplugin/tex for special keybinds
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
