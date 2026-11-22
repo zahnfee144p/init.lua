@@ -28,6 +28,10 @@ vim.opt.updatetime = 50
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
+-- bestest search options on the planet
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
